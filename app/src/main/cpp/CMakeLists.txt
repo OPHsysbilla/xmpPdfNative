@@ -21,20 +21,11 @@ ENDIF ()
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
-file(GLOB SOURCES impl/*.cpp)
-
 # #define ANDROID_ENV
 add_definitions(-DANDROID_ENV=1)
-include_directories(header)
+file(GLOB SOURCES impl/*.cpp)
 
-add_library(XMPCore SHARED IMPORTED)
-add_library(XMPFiles SHARED IMPORTED)
-set_target_properties(XMPCore PROPERTIES
-        IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/library/libXMPCore.so"
-        INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/public/include")
-set_target_properties(XMPFiles PROPERTIES
-        IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/library/libXMPFiles.so"
-        INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/public/include")
+include_directories(${CMAKE_SOURCE_DIR}/header)
 
 add_library( # Sets the name of the library.
         xmpmark
@@ -44,6 +35,24 @@ add_library( # Sets the name of the library.
 
         # Provides a relative path to your source file(s).
         ${SOURCES})
+#target_include_directories(xmpmark PRIVATE ${CMAKE_SOURCE_DIR}/header)
+#include_directories(${CMAKE_SOURCE_DIR}/public/include)
+#link_directories(${CMAKE_SOURCE_DIR}/library)
+
+target_include_directories(xmpmark PRIVATE ${CMAKE_SOURCE_DIR}/public/include)
+
+add_library(XMPCore SHARED IMPORTED)
+set_target_properties(XMPCore PROPERTIES
+        IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/library/libXMPCore.so
+#        INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/public/include
+        )
+
+add_library(XMPFiles SHARED IMPORTED)
+set_target_properties(XMPFiles PROPERTIES
+        IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/library/libXMPFiles.so
+#        INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/public/include
+        )
+
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
 # default, you only need to specify the name of the public NDK library

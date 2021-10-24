@@ -18,6 +18,10 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags "-fexceptions"
+                arguments "-DANDROID_STL=c++_shared", "-DVERBOSE=1"
+            }
+            ndk {
+                abiFilter "arm64-v8a"
             }
         }
     }

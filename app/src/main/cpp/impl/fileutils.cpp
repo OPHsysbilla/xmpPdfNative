@@ -12,7 +12,7 @@
 #define XMP_INCLUDE_XMPFILES 1
 #include "XMP.hpp"
 #include "XMP.incl_cpp"
-#include "../header/logutils.h"
+#include "logutils.h"
 
 using namespace std;
 
@@ -253,9 +253,7 @@ static void TestOneFile ( const char * fileName )
 
 // -------------------------------------------------------------------------------------------------
 
-
-extern "C" int tryUnitTestFile(const char * filename)
-{
+extern "C" int tryUnitTestFile(const char *filename) {
     int result = 0;
 
 //    char   logName[256];

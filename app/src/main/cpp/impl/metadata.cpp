@@ -3,7 +3,8 @@
 //
 #include <jni.h>
 #include <string>
-#include "fileutils.cpp"
+#include "fileutils.h"
+#include "logutils.h"
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_xmpnative_XmpNative_getMetaData(JNIEnv *env, jclass clazz, jstring pdfPath) {
