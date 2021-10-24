@@ -43,13 +43,13 @@ target_include_directories(xmpmark PRIVATE ${CMAKE_SOURCE_DIR}/public/include)
 
 add_library(XMPCore SHARED IMPORTED)
 set_target_properties(XMPCore PROPERTIES
-        IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/library/libXMPCore.so
+        IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/library/${ANDROID_ABI}/libXMPCore.so
 #        INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/public/include
         )
 
 add_library(XMPFiles SHARED IMPORTED)
 set_target_properties(XMPFiles PROPERTIES
-        IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/library/libXMPFiles.so
+        IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/library/${ANDROID_ABI}/libXMPFiles.so
 #        INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/public/include
         )
 
